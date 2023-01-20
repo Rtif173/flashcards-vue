@@ -1,4 +1,5 @@
-<script setup>
+<script>
+import { def } from "@vue/shared";
 import { store } from "../store.js";
 import Card from "./Card.vue";
 
@@ -6,12 +7,21 @@ if (store.cards.length != 0) {
   store.line = store.line.length == 0 ? Object.keys(store.cards) : store.line;
   store.currentCard = store.currentCard.length == 0 ? store.line.pop() : store.currentCard;
 }
+console.log(store.cards && store.cards.length != 0)
+export default {
+  data() {
+    return {
+      store
+    }
+  },
+  components:{Card}
+}
 
 </script>
 
 <template>
   <div class="wrapper">
-    <div class="learn-screen">
+    <div v-if="store.cards.length && store.cards.length != 0" class="learn-screen">
       <div class="progress-info-wrapper">
         <div class="progress-info bad">
           <div class="progress-counter">{{ store.bad }}</div>
@@ -23,7 +33,10 @@ if (store.cards.length != 0) {
         </div>
       </div>
       <Card />
-      <div>Hahahahah</div>
+    </div>
+    <div v-if="store.cards.length == 0 || !store.cards.length" class="no-cards">
+      <h1>Карточек нет</h1>
+      <p>Создайте или импортируйте карточки на странице <a href="#/">Файлы</a></p>
     </div>
   </div>
 </template>

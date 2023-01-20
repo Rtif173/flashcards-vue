@@ -25,9 +25,9 @@ const { direction, isSwiping, lengthX, lengthY } = useSwipe(
   }
 }
 )
-
+console.log(store.cards)
 const state = reactive({
-  view: store.cards[store.currentCard].front
+  view: store.cards[store.currentCard] ? store.cards[store.currentCard].front : ""
 })
 function rotate(e) {
   console.log(e.target.classList);
