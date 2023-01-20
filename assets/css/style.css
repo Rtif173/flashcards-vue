@@ -1,0 +1,14 @@
+:root{
+    --border-radius: 2rem;
+    --border-radius-small: 0.25rem;
+    --ssmal-padding: 0.25rem;
+    --smal-padding: 1rem;
+    --big-padding: 2rem;
+    --big-for-card-wrapper: 100px;
+}
+html{
+    background-color: #fafcfe;
+}
+body{
+    overflow-x: hidden;
+}
