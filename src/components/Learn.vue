@@ -9,10 +9,12 @@ export default {
       store
     }
   },
-  mounted() {
+  beforeMount() {
     if (Object.keys(this.store.cards).length != 0) {
-      store.line = store.line.length == 0 ? Object.keys(store.cards) : store.line;
-      store.currentCard = store.currentCard.length == 0 ? store.line.pop() : store.currentCard;
+      this.store.line = this.store.line.length == 0 ? Object.keys(this.store.cards) : this.store.line;
+      console.log('this.store.line: ', this.store.line);
+      this.store.currentCard = this.store.currentCard.length == 0 ? this.store.line.pop() : this.store.currentCard;
+      console.log('this.store.currentCard: ', this.store.currentCard);
     }
   },
   components: { Card }
