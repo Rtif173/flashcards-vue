@@ -95,9 +95,7 @@ export default {
 }
 
 .wrapper {
-  width: 100%;
-  max-width: 40rem;
-  margin: 0 auto;
+  margin: 0 var(--big-padding);
 }
 
 .explorer {
@@ -108,6 +106,7 @@ export default {
   border-radius: var(--border-radius);
   box-shadow: var(--card-box-shadow);
   margin-bottom: var(--spacing);
+  background-color: var(--card-background-color)
 }
 
 .explorer .flie-system {
@@ -120,13 +119,13 @@ export default {
 
 .flie-system {
   color: var(--secondary-inverse);
-  overflow-y: scroll;
+  overflow-y: auto;
   border-right: var(--border-width) solid var(--muted-border-color);
   background-color: var(--secondary);
 }
 
 .preview {
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: 0 var(--border-radius) 0 var(--ssmal-padding);
 }
 

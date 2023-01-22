@@ -1,12 +1,13 @@
 <template>
-  <div class="card-inline">
+  <article class="card-inline">
     <div class="left-side group-elem">
       <CardInlineItem :card="card" side="front" />
     </div>
+    <div class="vr"></div>
     <div class="right-side group-elem">
       <CardInlineItem :card="card" side="back" />
     </div>
-  </div>
+  </article>
 </template>
 
 <script>
@@ -28,28 +29,26 @@ export default {
 <style scoped>
 .card-inline {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  box-shadow: var(--card-box-shadow);
-  border-radius: var(--border-radius);
-  margin-bottom: var(--spacing);
-  min-height: calc(2 * var(--border-radius));
+  grid-template-columns: 1fr auto 1fr;
+  padding: 0;
+  min-height: calc(2 * var(--block-spacing-vertical));
 }
-.card-inline div{
-  padding: 1rem 0;
-}
-
-.card-inline .group-elem:first-child {
-  padding-left: var(--border-radius);
-  border-radius: var(--border-radius) 0 0 var(--border-radius);
+.vr{
+  margin: 0 0.25rem;
+  width: var(--border-width);
+  background-color: var(--muted-color);
 }
 
-.card-inline .group-elem:last-child {
-  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+.card-inline > :first-child{
+  padding: var(--block-spacing-vertical) 0 var(--block-spacing-vertical) var(--block-spacing-vertical);
+}
+.card-inline > :last-child{
+  padding: var(--block-spacing-vertical) var(--block-spacing-vertical) var(--block-spacing-vertical) 0;
 }
 
 .card-inline div {
   display: flex;
-  overflow-y: scroll;
+  overflow-y: auto;
   align-items: center;
 }
 

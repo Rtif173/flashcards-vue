@@ -47,7 +47,7 @@ function next(isGood) {
 
 <template>
   <div class="card-wrapper">
-    <div ref="target" class="card" :class="{ animated: !isSwiping }" @click="rotate" :style="{left, transform}">
+    <article ref="target" class="card" :class="{ animated: !isSwiping }" @click="rotate" :style="{left, transform}">
       <div class="card-content-wrapper">
         <MarkdownW :markdown="state.view" />
       </div>
@@ -55,7 +55,7 @@ function next(isGood) {
         <button @click.stop="next(false)">Ещё изучаю</button>
         <button @click.stop="next(true)">Знаю</button>
       </div>
-    </div>
+    </article>
   </div>
 </template>
 <style scoped>
@@ -71,22 +71,17 @@ function next(isGood) {
 }
 
 .card {
-  --padding: var(--border-radius);
   height: calc(100% - 2 * var(--big-for-card-wrapper));
   width: calc(100% - 2*var(--big-padding));
   box-sizing: border-box;
-  padding: var(--padding);
-  border-radius: var(--border-radius);
-  box-shadow: var(--card-box-shadow);
   display: grid;
   grid-template-rows: 1fr auto;
-  background-color: white;
   position: relative;
-  row-gap: var(--padding) ;
+  row-gap: var(--block-spacing-vertical);
 }
 
 .content {
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

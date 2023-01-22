@@ -7,14 +7,17 @@
     --big-for-card-wrapper: 100px;
 }
 
-html {
-    background-color: #fafcfe;
+@media only screen and (max-width: 450px) {
+    :root {
+        --big-padding: 1rem;
+    }
 }
 
-body {
-    overflow-x: hidden;
+@media only screen and (min-width: 250px) {
+    body {
+        overflow-x: hidden;
+    }
 }
-
 progress.animated::-webkit-progress-value {
     transition: width 1s;
 }
