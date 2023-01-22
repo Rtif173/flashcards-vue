@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue';
-
 const initialTheme = localStorage.getItem("theme") == "light";
 const lightTheme = ref(initialTheme);
 document.querySelector("html").setAttribute("data-theme", lightTheme.value ? "light" : "dark");
@@ -9,6 +8,9 @@ function changeTheme(){
   document.querySelector("html").setAttribute("data-theme", lightTheme.value ? "light" : "dark");
   localStorage.setItem("theme", lightTheme.value ? "light" : "dark")
 }
+const BASE_URL = import.meta.env.DEV ? "/" : import.meta.env.BASE_URL;
+console.log('BASE_URL: ', BASE_URL);
+
 </script>
 <template>
   <div class="header-wrapper">
@@ -16,9 +18,9 @@ function changeTheme(){
       <ul>
         <li>
           <picture>
-            <source media="(min-width:340px)" :srcset="lightTheme ? '../../assets/img/big%20logo%20outline.svg' : '../../assets/img/big%20logo%20outline%20dark.svg'">
-            <source media="(min-width:260px)" srcset="/logo-small.svg">
-            <img class="logo-image" src="/logo-extra-small.svg" />
+            <source media="(min-width:380px)" :srcset="BASE_URL+ (lightTheme ? 'big%20logo%20outline.svg' : 'big%20logo%20outline%20dark.svg')">
+            <source media="(min-width:260px)" :srcset="BASE_URL+'outline%20logo.svg'">
+            <img class="logo-image" :src="BASE_URL+'logo-extra-small.svg'" />
           </picture>
         </li>
       </ul>
