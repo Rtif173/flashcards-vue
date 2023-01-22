@@ -30,3 +30,7 @@ progress.animated::-moz-progress-bar {
     transform-origin: 0 0;
     transform: rotate(-90deg) translateX(-60px);
 }
+
+text.p-knob-text{
+    fill: var(--color);
+}
