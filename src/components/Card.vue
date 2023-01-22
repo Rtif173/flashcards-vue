@@ -25,20 +25,21 @@ const { direction, isSwiping, lengthX, lengthY } = useSwipe(
   }
 }
 )
-console.log(store.cards)
+let currentCardName=store.line[store.currentCard];
 const state = reactive({
-  view: store.cards[store.currentCard] ? store.cards[store.currentCard].front : ""
+  view: store.cards[currentCardName] ? store.cards[currentCardName].front : ""
 })
 function rotate(e) {
   console.log(e.target.classList);
   if (!e.target.classList.contains("p-image-preview-indicator") && !e.target.classList.contains("p-image-preview-icon")) {
-    state.view = store.isFront ? store.cards[store.currentCard].back : store.cards[store.currentCard].front;
+    state.view = store.isFront ? store.cards[currentCardName].back : store.cards[currentCardName].front;
     store.isFront = !store.isFront;
   }
 }
 function next(isGood) {
-  store.currentCard = store.line.pop();
-  state.view = store.cards[store.currentCard].front;
+  store.currentCard++;
+  currentCardName = store.line[store.currentCard];
+  state.view = store.cards[currentCardName].front;
   store.isFront = true;
   if (isGood) {
     store.good += 1;
@@ -51,7 +52,9 @@ function next(isGood) {
 <template>
   <div class="card-wrapper">
     <div ref="target" class="card" :class="{ animated: !isSwiping }" @click="rotate" :style="{left, transform}">
-      <MarkdownW :markdown="state.view" />
+      <div class="card-content-wrapper">
+        <MarkdownW :markdown="state.view" />
+      </div>
       <div class="button-group bottom-buttons-container">
         <button @click.stop="next(false)">Ещё изучаю</button>
         <button @click.stop="next(true)">Знаю</button>
@@ -62,7 +65,6 @@ function next(isGood) {
 <style scoped>
 .card-wrapper {
   position: relative;
-  min-height: calc(40vh + 2 * var(--big-for-card-wrapper));
   max-height: calc(95vh - 3rem + 2 * var(--big-for-card-wrapper));
   width: 100%;
   padding-top: var(--big-for-card-wrapper);
@@ -73,16 +75,18 @@ function next(isGood) {
 }
 
 .card {
+  --padding: var(--border-radius);
   height: calc(100% - 2 * var(--big-for-card-wrapper));
   width: calc(100% - 2*var(--big-padding));
   box-sizing: border-box;
-  padding: var(--border-radius);
+  padding: var(--padding);
   border-radius: var(--border-radius);
   box-shadow: var(--card-box-shadow);
   display: grid;
   grid-template-rows: 1fr auto;
   background-color: white;
   position: relative;
+  row-gap: var(--padding) ;
 }
 
 .content {

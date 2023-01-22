@@ -24,7 +24,7 @@ export const store = reactive({
   good: 0,
   bad: 0,
   isFront: true,
-  currentCard: ""
+  currentCard: 0
 });
 
 export const onEdit = reactive({});

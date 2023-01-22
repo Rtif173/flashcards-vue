@@ -1,4 +1,4 @@
-:root{
+:root {
     --border-radius: 2rem;
     --border-radius-small: 0.25rem;
     --ssmal-padding: 0.25rem;
@@ -6,9 +6,24 @@
     --big-padding: 2rem;
     --big-for-card-wrapper: 100px;
 }
-html{
+
+html {
     background-color: #fafcfe;
 }
-body{
+
+body {
     overflow-x: hidden;
+}
+
+progress.animated::-webkit-progress-value {
+    transition: width 1s;
+}
+
+progress.animated::-moz-progress-bar {
+    transition: padding-bottom 1s;
+    /* padding-left: 0.5rem; */
+    padding-bottom: var(--value);
+    /* height: 0.5rem; */
+    transform-origin: 0 0;
+    transform: rotate(-90deg) translateX(-60px);
 }
