@@ -1,9 +1,13 @@
 <script setup>
 import { ref } from 'vue';
-const lightTheme = ref(true);
+
+const initialTheme = localStorage.getItem("theme") == "light";
+const lightTheme = ref(initialTheme);
+document.querySelector("html").setAttribute("data-theme", lightTheme.value ? "light" : "dark");
 function changeTheme(){
   lightTheme.value = !lightTheme.value;
-  document.querySelector("html").setAttribute("data-theme", lightTheme.value ? "light" : "dark")
+  document.querySelector("html").setAttribute("data-theme", lightTheme.value ? "light" : "dark");
+  localStorage.setItem("theme", lightTheme.value ? "light" : "dark")
 }
 </script>
 <template>
