@@ -33,7 +33,7 @@ export default {
     <div class="next-actions">
       <h5 class="header">Продолжить изучение</h5>
       <div class="actions-wrapper">
-        <article v-if="storeLearn.good.length != storeLearn.line.length" class="action" @click="repeatUnlearned">Повторить не изученные карточки</article>
+        <article v-if="storeLearn.bad.length != 0" class="action" @click="repeatUnlearned">Повторить не изученные карточки</article>
         <article class="action" @click="runAgain">Начать сначала</article>
       </div>
     </div>
