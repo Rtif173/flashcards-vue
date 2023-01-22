@@ -13,18 +13,23 @@ export const media = reactive({
     this.media = {...this.media, ...newMedia};
   }
 })
+
 export const storeExplorer = reactive({
   typeOfFileOnPreview: "",
   preview: ""
 })
+
+export const storeLearn = reactive({
+  isFront: true,
+  currentCard: 0,
+  good: [],
+  bad: [],
+  line: [],
+})
+
 export const store = reactive({
   cards: {},
   media: {},
-  line: [],
-  good: 0,
-  bad: 0,
-  isFront: true,
-  currentCard: 0
 });
 
 export const onEdit = reactive({});

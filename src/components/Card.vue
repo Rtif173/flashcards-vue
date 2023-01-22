@@ -1,5 +1,5 @@
 <script setup>
-import { store } from "../store.js";
+import { store, storeLearn } from "../store.js";
 import { reactive, ref, computed } from "vue";
 import { useSwipe } from '@vueuse/core';
 import MarkdownW from "./MarkdownW.vue";
@@ -25,7 +25,7 @@ const { direction, isSwiping, lengthX, lengthY } = useSwipe(
   }
 }
 )
-let currentCardName=store.line[store.currentCard];
+let currentCardName=storeLearn.line[storeLearn.currentCard];
 const state = reactive({
   view: store.cards[currentCardName] ? store.cards[currentCardName].front : ""
 })
@@ -33,19 +33,15 @@ function rotate(e) {
   console.log(e.target.classList);
   if (!e.target.classList.contains("p-image-preview-indicator") && !e.target.classList.contains("p-image-preview-icon")) {
     state.view = store.isFront ? store.cards[currentCardName].back : store.cards[currentCardName].front;
-    store.isFront = !store.isFront;
+    storeLearn.isFront = !storeLearn.isFront;
   }
 }
 function next(isGood) {
-  store.currentCard++;
-  currentCardName = store.line[store.currentCard];
+  storeLearn[isGood?"good":"bad"].push(currentCardName);
+  storeLearn.currentCard++;
+  currentCardName = storeLearn.line[storeLearn.currentCard];
   state.view = store.cards[currentCardName].front;
   store.isFront = true;
-  if (isGood) {
-    store.good += 1;
-  } else {
-    store.bad += 1;
-  }
 }
 </script>
 
