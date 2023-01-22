@@ -2,6 +2,7 @@
 import { def } from "@vue/shared";
 import { store, storeLearn } from "../store.js";
 import Card from "./Card.vue";
+import LearnResult from "./LearnResult.vue";
 
 export default {
   data() {
@@ -18,14 +19,14 @@ export default {
       console.log('this.storeLearn.currentCard: ', this.storeLearn.currentCard);
     }
   },
-  components: { Card }
+  components: { Card, LearnResult }
 }
 
 </script>
 
 <template>
   <div class="wrapper">
-    <div v-if="Object.keys(this.store.cards).length != 0" class="learn-screen">
+    <div v-if="Object.keys(store.cards).length != 0 && storeLearn.currentCard != storeLearn.line.length" class="learn-screen">
       <div class="progress-info-wrapper learn-screen-item">
         <div class="progress-info bad">
           <div class="progress-counter">{{ storeLearn.bad.length }}</div>
@@ -36,12 +37,15 @@ export default {
           <div class="progress-counter">{{ storeLearn.good.length }}</div>
         </div>
       </div>
-      <progress class="learn-screen-item animated" :value="storeLearn.currentCard" :max="Object.keys(store.cards).length" :style="'--value: '+ storeLearn.currentCard/Object.keys(store.cards).length*100 +'%' "></progress>
+      <progress class="learn-screen-item animated" :value="storeLearn.currentCard" :max="storeLearn.line.length" :style="'--value: '+ storeLearn.currentCard/storeLearn.line.length*100 +'%' "></progress>
       <Card />
     </div>
-    <div v-if="Object.keys(this.store.cards).length == 0" class="no-cards">
+    <div v-if="Object.keys(store.cards).length == 0" class="no-cards">
       <h1>Карточек нет</h1>
       <p>Создайте или импортируйте карточки на странице <a href="#/">Файлы</a></p>
+    </div>
+    <div v-if="Object.keys(store.cards).length != 0 && storeLearn.currentCard == storeLearn.line.length">
+      <LearnResult />
     </div>
   </div>
 </template>
