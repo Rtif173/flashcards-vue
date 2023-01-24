@@ -26,10 +26,15 @@ console.log('BASE_URL: ', BASE_URL);
       </ul>
       <ul>
         <li>
-          <a href="#/">Файлы</a>
+          <a href="#/">Карточки</a>
         </li>
         <li>
-          <a href="#/learn">Карточки</a>
+          <a href="#/learn">Обучение</a>
+        </li>
+        <li>
+          <a href="#/login" role="button">
+            <i class="pi pi-user"></i>
+          </a>
         </li>
         <li>
           <a href="javascript:void(0)" @click="changeTheme">

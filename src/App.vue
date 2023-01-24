@@ -2,10 +2,11 @@
 import FilesPage from './components/FilesPage.vue'
 import Learn from './components/Learn.vue';
 import Header from './components/Header.vue';
-
+import LoginRegisterPage from './components/LoginRegisterPage.vue';
 const routes = {
   '/': FilesPage,
   '/learn': Learn,
+  '/login': LoginRegisterPage,
 }
 
 export default {
