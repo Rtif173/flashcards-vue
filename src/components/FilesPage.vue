@@ -11,7 +11,8 @@
     </div>
     <input type="button" @click="importCards" value="Импортировать">
     <CardInline v-for="(cardcontent, card) in store.cards" :card="card" />
-    <input type="button" @click="createCard" value="Создать">
+    <input type="button" @click="createCard" value="Добавить карточку">
+    <input type="button" @click="saveToServer" value="Сохранть на сервер">
   </div>
 </template>
 <script>
@@ -20,7 +21,7 @@ import { readFileText, readFileUrl, generateRandomString, splitStingByLast } fro
 import CardInline from './CardInline.vue';
 import FileSystemItem from "./FileSystemItem.vue";
 import FileSystemPreview from "./FileSystemPreview.vue";
-
+import api from "../api/api";
 // import * as zip from "@zip.js/zip.js";
 
 
@@ -84,6 +85,12 @@ export default {
         token = generateRandomString(5);
       }
       this.store.cards[token] = { front: "", back: "" }
+    },
+    async saveToServer(){
+      console.log(api.session)
+      console.log(this.store.cards)
+      console.log(this.media.media)
+      api.sendCardsToServer('test', this.store.cards, this.media.media)
     }
   },
   components: { CardInline, FileSystemItem, FileSystemPreview}

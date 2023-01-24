@@ -6,9 +6,11 @@ import '/assets/css/style.css'
 import App from './App.vue'
 import Vue3TouchEvents from "vue3-touch-events";
 import PrimeVue from 'primevue/config';
+import router from './router'
 
 const app = createApp(App);
 
 app.use(Vue3TouchEvents)
 app.use(PrimeVue);
+app.use(router);
 app.mount('#app');
