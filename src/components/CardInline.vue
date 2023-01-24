@@ -39,10 +39,10 @@ export default {
   background-color: var(--muted-color);
 }
 
-.card-inline > :first-child{
+.card-inline > div > :first-child{
   padding: var(--block-spacing-vertical) 0 var(--block-spacing-vertical) var(--block-spacing-vertical);
 }
-.card-inline > :last-child{
+.card-inline > div > :last-child{
   padding: var(--block-spacing-vertical) var(--block-spacing-vertical) var(--block-spacing-vertical) 0;
 }
 
