@@ -1,7 +1,7 @@
 <script>
-import MarkdownW from "./MarkdownW.vue";
+import MarkdownW from "../MarkdownW.vue";
 import Image from "primevue/image";
-import { files, storeExplorer } from "../store.js"
+import { files, storeExplorer } from "../../store.js"
 
 export default {
   data() {
@@ -9,7 +9,7 @@ export default {
       storeExplorer,
     }
   },
-  components:{MarkdownW, Image}
+  components: { MarkdownW, Image }
 }
 </script>
 <template>

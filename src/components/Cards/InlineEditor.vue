@@ -1,6 +1,6 @@
 <script>
-import { store, onEdit, files, media } from '../store';
-import { isFileInFileArray } from '../methods'
+import { store, onEdit, files, media } from '../../store';
+import { isFileInFileArray } from '../../methods'
 import FileUpload from 'primevue/fileupload';
 
 function pasteHtmlAtCaret(html) {

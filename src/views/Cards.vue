@@ -18,9 +18,9 @@
 <script>
 import { store, files, media } from "../store.js";
 import { readFileText, readFileUrl, generateRandomString, splitStingByLast } from "../methods";
-import CardInline from '../components/CardInline.vue';
-import FileSystemItem from "../components/FileSystemItem.vue";
-import FileSystemPreview from "../components/FileSystemPreview.vue";
+import CardInline from '../components/Cards/CardInline.vue';
+import FileSystemItem from "../components/Cards/FileSystemItem.vue";
+import FileSystemPreview from "../components/Cards/FileSystemPreview.vue";
 import api from "../api/api";
 // import * as zip from "@zip.js/zip.js";
 

@@ -12,14 +12,14 @@
 
 <script>
 import CardInlineItem from './CardInlineItem.vue';
-import MarkdownW from './MarkdownW.vue';
+import MarkdownW from '../MarkdownW.vue';
 export default {
   props: {
     card: {
       required: true,
     },
   },
-  mounted(){
+  mounted() {
     console.log(this.card);
   },
   components: { MarkdownW, CardInlineItem }
@@ -33,16 +33,18 @@ export default {
   padding: 0;
   min-height: calc(2 * var(--block-spacing-vertical));
 }
-.vr{
+
+.vr {
   margin: 0 0.25rem;
   width: var(--border-width);
   background-color: var(--muted-color);
 }
 
-.card-inline > div > :first-child{
+.card-inline>div> :first-child {
   padding: var(--block-spacing-vertical) 0 var(--block-spacing-vertical) var(--block-spacing-vertical);
 }
-.card-inline > div > :last-child{
+
+.card-inline>div> :last-child {
   padding: var(--block-spacing-vertical) var(--block-spacing-vertical) var(--block-spacing-vertical) 0;
 }
 

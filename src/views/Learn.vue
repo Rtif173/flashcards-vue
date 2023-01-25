@@ -1,7 +1,7 @@
 <script setup>
 import { store, storeLearn } from "../store.js";
-import Card from "../components/Card.vue";
-import LearnResult from "../components/LearnResult.vue";
+import Card from "../components/Learn/Card.vue";
+import LearnResult from "../components/Learn/LearnResult.vue";
 import { useRoute } from 'vue-router'
 import { onBeforeMount } from 'vue'
 import api from "../api/api";
@@ -14,12 +14,19 @@ if (route.params.username && route.params.cardsetname) {
         console.log(resp, err)
       } else {
         store.cards = resp.cards;
-        genLine()
+        setDefaultStoreLearn();
       }
     })
 }
 function genLine() {
   storeLearn.line = storeLearn.line.length == 0 ? Object.keys(store.cards) : store.storeLearn;
+}
+function setDefaultStoreLearn() {
+  genLine();
+  storeLearn.currentCard = 0;
+  storeLearn.bad = [];
+  storeLearn.good = [];
+  storeLearn.isFront = true;
 }
 
 </script>
@@ -31,7 +38,7 @@ function genLine() {
       <div class="progress-info-wrapper learn-screen-item">
         <div class="progress-info bad">
           <div class="progress-counter">{{ storeLearn.bad.length }}</div>
-          <span class="progress-label"></span>
+          <span class="progress-label">Ещё изучаю</span>
         </div>
         <div class="progress-info good">
           <span class="progress-label">Знаю</span>

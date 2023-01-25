@@ -1,8 +1,8 @@
 <script setup>
-import { store, storeLearn } from "../store.js";
+import { store, storeLearn } from "../../store.js";
 import { reactive, ref, computed } from "vue";
 import { useSwipe } from '@vueuse/core';
-import MarkdownW from "./MarkdownW.vue";
+import MarkdownW from "../MarkdownW.vue";
 const target = ref();
 const targetHeight = computed(() => target.value.offsetHeight);
 console.log('targetHeight: ', targetHeight);
@@ -25,7 +25,7 @@ const { direction, isSwiping, lengthX, lengthY } = useSwipe(
   }
 }
 )
-let currentCardName=storeLearn.line[storeLearn.currentCard];
+let currentCardName = storeLearn.line[storeLearn.currentCard];
 const state = reactive({
   view: store.cards[currentCardName] ? store.cards[currentCardName].front : ""
 })
@@ -37,7 +37,7 @@ function rotate(e) {
   }
 }
 function next(isGood) {
-  storeLearn[isGood?"good":"bad"].push(currentCardName);
+  storeLearn[isGood ? "good" : "bad"].push(currentCardName);
   storeLearn.currentCard++;
   currentCardName = storeLearn.line[storeLearn.currentCard];
   state.view = store.cards[currentCardName].front;

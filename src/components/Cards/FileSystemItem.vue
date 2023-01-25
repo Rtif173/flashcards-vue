@@ -1,13 +1,13 @@
 <script>
-import {files, storeExplorer} from "../store.js"
-import { defineFileType, readFileText, readFileUrl } from "../methods";
+import { files, storeExplorer } from "../../store.js"
+import { defineFileType, readFileText, readFileUrl } from "../../methods";
 
-async function generatePreviewContent(file){
-  if(!file){
+async function generatePreviewContent(file) {
+  if (!file) {
     return ""
   }
   let preview = "";
-  switch (defineFileType(file)){
+  switch (defineFileType(file)) {
     case "markdown":
       preview = await readFileText(file);
       break;
@@ -21,19 +21,19 @@ async function generatePreviewContent(file){
 }
 
 export default {
-  props:{ 
-    file:{
+  props: {
+    file: {
       required: true
     }
   },
-  data(){
+  data() {
     return {
       files,
       storeExplorer
     }
   },
-  methods:{
-    async previewFile(){
+  methods: {
+    async previewFile() {
       this.storeExplorer.preview = "";
       this.storeExplorer.preview = await generatePreviewContent(this.file);
       this.storeExplorer.typeOfFileOnPreview = defineFileType(this.file);
