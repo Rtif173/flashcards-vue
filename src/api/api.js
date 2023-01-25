@@ -71,6 +71,17 @@ export class API {
       return [(await resp.json()).error, status]
     }
   }
+
+  async userInfo() {
+    const resp = await fetch(backendURL + `session_info?session=${this.session}`)
+    const status = resp.status;
+    const json = await resp.json();
+    if (status == 200) {
+      return [json, null]
+    } else {
+      return [json.error, status]
+    }
+  }
 }
 
 const api = new API();
