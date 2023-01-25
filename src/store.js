@@ -10,7 +10,7 @@ export const media = reactive({
         newMedia[file.name] = await readFileUrl(file);
       }
     }
-    this.media = {...this.media, ...newMedia};
+    this.media = { ...this.media, ...newMedia };
   }
 })
 
@@ -27,6 +27,10 @@ export const storeLearn = reactive({
   line: [],
 })
 
+export const storeUser = reactive({
+  onSelect: false,
+  selected: []
+})
 export const store = reactive({
   cards: {},
   media: {},
