@@ -3,7 +3,7 @@
     <input type="file" @change="addFiles" multiple />
     <div class="explorer">
       <div class="flie-system">
-        <FileSystemItem v-for="file in files" :file="file"/>
+        <FileSystemItem v-for="file in files" :file="file" />
       </div>
       <div class="preview">
         <FileSystemPreview />
@@ -18,9 +18,9 @@
 <script>
 import { store, files, media } from "../store.js";
 import { readFileText, readFileUrl, generateRandomString, splitStingByLast } from "../methods";
-import CardInline from './CardInline.vue';
-import FileSystemItem from "./FileSystemItem.vue";
-import FileSystemPreview from "./FileSystemPreview.vue";
+import CardInline from '../components/CardInline.vue';
+import FileSystemItem from "../components/FileSystemItem.vue";
+import FileSystemPreview from "../components/FileSystemPreview.vue";
 import api from "../api/api";
 // import * as zip from "@zip.js/zip.js";
 
@@ -40,7 +40,7 @@ async function genCards(files) {
   const cards = {};
   for (const file of files) {
     const allFileName = file.name;
-    const [fileNameWithoutExtension, extension ] = splitStingByLast(allFileName, ".");
+    const [fileNameWithoutExtension, extension] = splitStingByLast(allFileName, ".");
     switch (extension) {
       case "md":
         const [cardName, side] = splitStingByLast(fileNameWithoutExtension, "-");
@@ -81,19 +81,19 @@ export default {
     },
     createCard() {
       let token = generateRandomString(5);
-      while(this.store.cards[token]){
+      while (this.store.cards[token]) {
         token = generateRandomString(5);
       }
       this.store.cards[token] = { front: "", back: "" }
     },
-    async saveToServer(){
+    async saveToServer() {
       console.log(api.session)
       console.log(this.store.cards)
       console.log(this.media.media)
       api.sendCardsToServer('test', this.store.cards, this.media.media)
     }
   },
-  components: { CardInline, FileSystemItem, FileSystemPreview}
+  components: { CardInline, FileSystemItem, FileSystemPreview }
 };
 </script>
 <style scoped>

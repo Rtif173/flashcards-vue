@@ -1,7 +1,7 @@
 <script setup>
 import { store, storeLearn } from "../store.js";
-import Card from "./Card.vue";
-import LearnResult from "./LearnResult.vue";
+import Card from "../components/Card.vue";
+import LearnResult from "../components/LearnResult.vue";
 import { useRoute } from 'vue-router'
 import { onBeforeMount } from 'vue'
 import api from "../api/api";
