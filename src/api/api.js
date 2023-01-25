@@ -82,6 +82,24 @@ export class API {
       return [json.error, status]
     }
   }
+
+  async deleteCardsets(cardsetnames) {
+    const resp = await fetch(backendURL + `delete_cardsets?session=${this.session}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(cardsetnames)
+    })
+    const status = resp.status;
+    if (status == 200) {
+      const text = await resp.text();
+      return [text, null]
+    } else {
+      const text = await resp.text();
+      return [text, status]
+    }
+  }
 }
 
 const api = new API();

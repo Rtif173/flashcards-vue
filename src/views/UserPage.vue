@@ -1,9 +1,11 @@
 <script setup>
 import { ref } from 'vue';
+import CardsetItem from '../components/User/CardsetItem.vue';
 // import { useRoute } from 'vue-router';
 // const route = useRoute();
 
 import api from '../api/api';
+import Controller from '../components/User/Controller.vue';
 const username = ref("");
 const cardsetnames = ref([])
 api.userInfo()
@@ -16,7 +18,6 @@ api.userInfo()
 </script>
 <template>
   <h1>Страница пользователя {{ username }}</h1>
-  <router-link v-for="cardsetname in cardsetnames" :to="`/learn/${username}/${cardsetname}`">
-    <article>{{ cardsetname }}</article>
-  </router-link>
+  <CardsetItem v-for="cardsetname in cardsetnames" :cardsetname="cardsetname" :username="username" />
+  <Controller />
 </template>
