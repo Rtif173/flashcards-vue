@@ -2,7 +2,7 @@ import CryptoJS from 'crypto-js';
 
 const backendURL = "http://memorymate.pythonanywhere.com/api/v1/"
 export class API {
-  session = localStorage.getItem("session") 
+  session = localStorage.getItem("session")
 
   async isEmailRegistered(email) {
     const resp = await fetch(backendURL + "is_email_registered?email=" + email);
@@ -57,18 +57,18 @@ export class API {
       .then(data => console.log(data))
       .catch(error => console.error(error));
   }
-  async loadCardsFromServer(username, cardsetname){
-    const resp = await fetch(backendURL+username+'/'+cardsetname);
+  async loadCardsFromServer(username, cardsetname) {
+    const resp = await fetch(backendURL + username + '/' + cardsetname);
     const status = resp.status;
     if (status == 200) {
-      json = await resp.json();
-      if("cards" in json && "media" in json){
-        return json, null
+      const json = await resp.json();
+      if ("cards" in json && "media" in json) {
+        return [json, null]
       } else {
         return "cardset has invalid properties", 500
       }
     } else {
-      return (await resp.json()).error, status
+      return [(await resp.json()).error, status]
     }
   }
 }

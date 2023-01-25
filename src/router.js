@@ -9,6 +9,10 @@ const routes = [
     component: FilesPage
   },
   {
+    path: '/learn/:username/:cardsetname',
+    component: LearnPage
+  },
+  {
     path: '/learn',
     component: LearnPage
   },
