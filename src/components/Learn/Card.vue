@@ -25,14 +25,18 @@ const { direction, isSwiping, lengthX, lengthY } = useSwipe(
   }
 }
 )
+if (storeLearn.currentCard == 0) {
+  storeLearn.isFront = true
+}
 let currentCardName = storeLearn.line[storeLearn.currentCard];
 const state = reactive({
-  view: store.cards[currentCardName] ? store.cards[currentCardName].front : ""
+  view: storeLearn.isFront ? store.cards[currentCardName].front : store.cards[currentCardName].back
 })
 function rotate(e) {
+  console.log(storeLearn.isFront)
   console.log(e.target.classList);
   if (!e.target.classList.contains("p-image-preview-indicator") && !e.target.classList.contains("p-image-preview-icon")) {
-    state.view = store.isFront ? store.cards[currentCardName].back : store.cards[currentCardName].front;
+    state.view = storeLearn.isFront ? store.cards[currentCardName].back : store.cards[currentCardName].front;
     storeLearn.isFront = !storeLearn.isFront;
   }
 }
@@ -41,7 +45,7 @@ function next(isGood) {
   storeLearn.currentCard++;
   currentCardName = storeLearn.line[storeLearn.currentCard];
   state.view = store.cards[currentCardName].front;
-  store.isFront = true;
+  storeLearn.isFront = true;
 }
 </script>
 
