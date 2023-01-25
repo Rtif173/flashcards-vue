@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <input type="file" @change="addFiles" multiple />
+    <!-- <input type="file" @change="addFiles" multiple />
     <div class="explorer">
       <div class="flie-system">
         <FileSystemItem v-for="file in files" :file="file" />
@@ -9,7 +9,7 @@
         <FileSystemPreview />
       </div>
     </div>
-    <input type="button" @click="importCards" value="Импортировать">
+    <input type="button" @click="importCards" value="Импортировать"> -->
     <CardInline v-for="(cardcontent, card) in store.cards" :card="card" />
     <input type="button" @click="createCard" value="Добавить карточку">
     <input type="button" @click="saveToServer" value="Сохранть на сервер">
