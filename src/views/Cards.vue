@@ -16,7 +16,10 @@
     <input type="button" @click="importCards" value="Импортировать"> -->
     <CardInline v-for="(cardcontent, card) in store.cards" :card="card" />
     <input type="button" @click="createCard" value="Добавить карточку">
-    <input type="button" @click="saveToServer" value="Сохранть на сервер">
+    <div class="button-group">
+      <button @click="saveToServer">Изменить на сервере</button>
+      <button @click="createNewInServer">Сохранить как новую на сервер</button>
+    </div>
   </div>
 </template>
 <script>
@@ -94,13 +97,21 @@ export default {
       console.log(api.session)
       console.log(this.store.cards)
       console.log(this.media.media)
-      const newCardsetname = document.querySelector(".cardsetname-input").innerText
+      const newCardsetname = document.querySelector(".cardsetname-input").innerText;
       if (newCardsetname == this.store.cardsetname) {
         await api.sendCardsToServer(this.store.cardsetname, this.store.cards, this.media.media)
       } else {
         await api.sendCardsToServer(newCardsetname, this.store.cards, this.media.media, this.store.cardsetname);
         this.store.cardsetname = newCardsetname
       }
+    },
+    async createNewInServer() {
+      console.log(api.session)
+      console.log(this.store.cards)
+      console.log(this.media.media)
+      const newCardsetname = document.querySelector(".cardsetname-input").innerText;
+      console.log("newCardsetname:", newCardsetname);
+      await api.sendCardsToServer(newCardsetname, this.store.cards, this.media.media)
     }
   },
   components: { CardInline, FileSystemItem, FileSystemPreview }
