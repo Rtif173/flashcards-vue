@@ -18,6 +18,7 @@
         overflow-x: hidden;
     }
 }
+
 progress.animated::-webkit-progress-value {
     transition: width 1s;
 }
@@ -31,6 +32,28 @@ progress.animated::-moz-progress-bar {
     transform: rotate(-90deg) translateX(-60px);
 }
 
-text.p-knob-text{
+text.p-knob-text {
     fill: var(--color);
+}
+
+.buttons-container {
+    display: flex;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.buttons-container button {
+    margin: 0
+}
+
+.buttons-container button:first-child {
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+.buttons-container button:not(:first-child):not(:last-child) {
+    border-radius: 0;
+}
+
+.buttons-container button:last-child {
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
 }

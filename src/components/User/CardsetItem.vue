@@ -1,5 +1,5 @@
 <script setup>
-import { storeUser } from '../../store';
+import { store, storeUser } from '../../store';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter();
@@ -24,6 +24,7 @@ function onTap() {
       storeUser.selected.splice(indexOfSelected, 1)
     }
   } else {
+    store.cardsetname = props.cardsetname;
     router.push(`/learn/${props.username}/${props.cardsetname}`)
   }
   console.log(storeUser.selected)

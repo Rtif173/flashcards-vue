@@ -1,5 +1,9 @@
 <template>
   <div class="wrapper">
+    <div class="cardsetname-wrapper">
+      <h1>Колода</h1>
+      <h1 class="cardsetname-input" contenteditable="true">{{ store.cardsetname }}</h1>
+    </div>
     <!-- <input type="file" @change="addFiles" multiple />
     <div class="explorer">
       <div class="flie-system">
@@ -90,7 +94,13 @@ export default {
       console.log(api.session)
       console.log(this.store.cards)
       console.log(this.media.media)
-      api.sendCardsToServer('test', this.store.cards, this.media.media)
+      const newCardsetname = document.querySelector(".cardsetname-input").innerText
+      if (newCardsetname == this.store.cardsetname) {
+        await api.sendCardsToServer(this.store.cardsetname, this.store.cards, this.media.media)
+      } else {
+        await api.sendCardsToServer(newCardsetname, this.store.cards, this.media.media, this.store.cardsetname);
+        this.store.cardsetname = newCardsetname
+      }
     }
   },
   components: { CardInline, FileSystemItem, FileSystemPreview }
@@ -101,8 +111,20 @@ export default {
   margin-bottom: calc(var(--spacing) - var(--form-element-spacing-vertical) * 0.5);
 }
 
-.wrapper {
-  margin: 0 var(--big-padding);
+
+.cardsetname-wrapper {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-column-gap: 2rem;
+  cursor: text;
+}
+
+.cardsetname-wrapper h1 {
+  margin-bottom: 0;
+}
+
+.cardsetname-input {
+  border-bottom: 3px solid var(--h1-color);
 }
 
 .explorer {

@@ -32,6 +32,7 @@ export const storeUser = reactive({
   selected: []
 })
 export const store = reactive({
+  cardsetname: "Новая",
   cards: {},
   media: {},
 });

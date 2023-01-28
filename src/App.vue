@@ -36,7 +36,7 @@ import Header from './components/Header.vue';
   </div>
 </template>
 <style scoped>
-.view{
-  margin-top: 4rem;
+.view {
+  margin: 4rem var(--block-spacing-vertical) 0 var(--block-spacing-vertical);
 }
 </style>

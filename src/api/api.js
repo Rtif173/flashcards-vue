@@ -43,13 +43,13 @@ export class API {
       return [t.error, status]
     }
   }
-  async sendCardsToServer(name, cards, media) {
+  async sendCardsToServer(name, cards, media, oldname) {
     const jsonData = { "cards": cards, "media": media };
     const jsonBlob = new Blob([JSON.stringify(jsonData)], { type: 'application/json' });
     const formData = new FormData();
     formData.append('file', jsonBlob, `${name}.json`);
 
-    fetch(backendURL + `upload_cardset?session=${this.session}`, {
+    fetch(backendURL + `upload_cardset?session=${this.session}` + (oldname ? `&oldname=${oldname}` : ''), {
       method: 'POST',
       body: formData
     })
