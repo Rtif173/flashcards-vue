@@ -56,4 +56,5 @@ text.p-knob-text {
 
 .buttons-container button:last-child {
     border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    /* aosdc */
 }
