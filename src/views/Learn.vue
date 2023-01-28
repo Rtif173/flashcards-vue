@@ -6,7 +6,7 @@ import { useRoute } from 'vue-router'
 import { onBeforeMount } from 'vue'
 import api from "../api/api";
 const route = useRoute()
-
+console.log("Страница Learn", storeLearn)
 if (route.params.username && route.params.cardsetname) {
   api.loadCardsFromServer(route.params.username, route.params.cardsetname)
     .then(([resp, err]) => {
@@ -19,7 +19,7 @@ if (route.params.username && route.params.cardsetname) {
     })
 }
 function genLine() {
-  storeLearn.line = storeLearn.line.length == 0 ? Object.keys(store.cards) : store.storeLearn;
+  storeLearn.line = storeLearn.line.length == 0 ? Object.keys(store.cards) : storeLearn.line;
 }
 function setDefaultStoreLearn() {
   genLine();
