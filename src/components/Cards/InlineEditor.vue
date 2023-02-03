@@ -87,6 +87,7 @@ export default {
 <template>
   <div class="editor-wrapper">
     <div class="editor-line">
+      <!-- <textarea></textarea> -->
       <div ref="editor" class="editor" contentEditable="true">{{ store.cards[card][side] }}</div>
       <FileUpload name="demo[]" accept="image/*" @select="imageSelect" :multiple="false">
         <template #header="{ chooseCallback, clearCallback }">

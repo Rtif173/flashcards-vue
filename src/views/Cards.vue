@@ -1,8 +1,9 @@
 <template>
   <div class="wrapper">
     <div class="cardsetname-wrapper">
-      <h1>Колода</h1>
-      <h1 class="cardsetname-input" contenteditable="true">{{ store.cardsetname }}</h1>
+      <h1>Колода
+        <input type="text" class="cardsetname-input" :value="store.cardsetname" />
+      </h1>
     </div>
     <!-- <input type="file" @change="addFiles" multiple />
     <div class="explorer">
@@ -109,7 +110,7 @@ export default {
       console.log(api.session)
       console.log(this.store.cards)
       console.log(this.media.media)
-      const newCardsetname = document.querySelector(".cardsetname-input").innerText;
+      const newCardsetname = document.querySelector(".cardsetname-input").value;
       console.log("newCardsetname:", newCardsetname);
       await api.sendCardsToServer(newCardsetname, this.store.cards, this.media.media)
     }
@@ -123,11 +124,11 @@ export default {
 }
 
 
-.cardsetname-wrapper {
+.cardsetname-wrapper h1 {
+  padding-top: 5px;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-column-gap: 2rem;
-  cursor: text;
 }
 
 .cardsetname-wrapper h1 {
@@ -135,6 +136,11 @@ export default {
 }
 
 .cardsetname-input {
+  border-radius: 0;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
   border-bottom: 3px solid var(--h1-color);
 }
 
